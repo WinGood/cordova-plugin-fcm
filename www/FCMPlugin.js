@@ -4,6 +4,14 @@ function FCMPlugin() {
 	console.log("FCMPlugin.js: is created");
 }
 
+FCMPlugin.prototype.grantPermission = function( topic, success, error ){
+	exec(success, error, "FCMPlugin", 'grantPermission', []);
+}
+
+FCMPlugin.prototype.hasPermission = function( topic, success, error ){
+	exec(success, error, "FCMPlugin", 'hasPermission', []);
+}
+
 // SUBSCRIBE TO TOPIC //
 FCMPlugin.prototype.subscribeToTopic = function( topic, success, error ){
 	exec(success, error, "FCMPlugin", 'subscribeToTopic', [topic]);
