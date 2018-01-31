@@ -9,9 +9,9 @@
 + (FCMPlugin *) fcmPlugin;
 - (void)ready:(CDVInvokedUrlCommand*)command;
 - (void)getToken:(CDVInvokedUrlCommand*)command;
-- (void)subscribeToTopic:(CDVInvokedUrlCommand*)command;
-- (void)unsubscribeFromTopic:(CDVInvokedUrlCommand*)command;
-- (void)onNotification:(CDVInvokedUrlCommand*)command;
+- (void)subscribe:(CDVInvokedUrlCommand*)command;
+- (void)unsubscribe:(CDVInvokedUrlCommand*)command;
+- (void)onNotificationOpen:(CDVInvokedUrlCommand*)command;
 - (void)grantPermission:(CDVInvokedUrlCommand*)command;
 - (void)hasPermission:(CDVInvokedUrlCommand*)command;
 - (void)notifyOfMessage:(NSData*) payload;

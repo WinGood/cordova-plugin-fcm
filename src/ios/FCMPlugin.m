@@ -48,7 +48,7 @@ static FCMPlugin *fcmPluginInstance;
 }
 
 // UN/SUBSCRIBE TOPIC //
-- (void) subscribeToTopic:(CDVInvokedUrlCommand *)command 
+- (void) subscribe:(CDVInvokedUrlCommand *)command 
 {
     NSString* topic = [command.arguments objectAtIndex:0];
     NSLog(@"subscribe To Topic %@", topic);
@@ -60,7 +60,7 @@ static FCMPlugin *fcmPluginInstance;
     }];
 }
 
-- (void) unsubscribeFromTopic:(CDVInvokedUrlCommand *)command 
+- (void) unsubscribe:(CDVInvokedUrlCommand *)command 
 {
     NSString* topic = [command.arguments objectAtIndex:0];
     NSLog(@"unsubscribe From Topic %@", topic);
@@ -73,7 +73,7 @@ static FCMPlugin *fcmPluginInstance;
 }
 
 //This is not called when a notification is called, it is called when the js subscribes to the onNotification callback
-- (void) onNotification:(CDVInvokedUrlCommand *)command
+- (void) onNotificationOpen:(CDVInvokedUrlCommand *)command
 {
     NSLog(@"onNotification:command");
     
