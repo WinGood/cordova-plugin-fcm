@@ -12,6 +12,10 @@ FCMPlugin.prototype.hasPermission = function(success, error){
 	exec(success, error, "FCMPlugin", 'hasPermission', []);
 }
 
+FCMPlugin.prototype.unregister = function(success, error){
+	exec(success, error, "FCMPlugin", 'unregister', []);
+}
+
 // TODO add unregister method
 
 // SUBSCRIBE TO TOPIC //
