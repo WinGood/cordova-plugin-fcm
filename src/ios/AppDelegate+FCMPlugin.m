@@ -51,6 +51,9 @@
         | UNAuthorizationOptionSound
         | UNAuthorizationOptionBadge;
         [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (error) {
+             NSLog(@"FCMPlugin requestAuthorizationWithOptions error");
+            }
         }];
         
         // For iOS 10 display notification (sent via APNS)
@@ -65,6 +68,13 @@
 
     
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    if (notificationSettings.types != UIUserNotificationTypeNone) {
+        NSLog(@"FCMPlugin didRegisterUser");
+        [application registerForRemoteNotifications];
+    }
 }
 
 //////////////////////////////////////////////////////
@@ -91,6 +101,16 @@
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
+- (void)applicationDidFinishLaunching:(UIApplication *)app {
+    // Register for remote notifications.
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)app
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    // The token is not currently available.
+    NSLog(@"FCMPlugin Remote notification support is unavailable due to error: %@", err);
+}
 
 
 //////////////////////////////////////////////////////
@@ -137,17 +157,31 @@
 ////////////////FOREGROUND/BACKGROUND/////////////////
 //////////////////////////////////////////////////////
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
+- (void)applicationWillResignActive:(UIApplication *)application {
+    [[FCMQueue sharedFCMQueue] setIsInForground:NO];
+}
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [[FCMQueue sharedFCMQueue] setIsInForground:NO];
+}
+- (void)applicationWillEnterForeground:(UIApplication *)application {
     [[FCMQueue sharedFCMQueue] setIsInForground:YES];
-    NSLog(@"applicationDidBecomeActive:");
+}
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [[FCMQueue sharedFCMQueue] setIsInForground:NO];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    [[FCMQueue sharedFCMQueue] setIsInForground:NO];
-    NSLog(@"applicationDidEnterBackground:");
-}
+//
+//- (void)applicationDidBecomeActive:(UIApplication *)application
+//{
+//    [[FCMQueue sharedFCMQueue] setIsInForground:YES];
+//    NSLog(@"applicationDidBecomeActive:");
+//}
+//
+//- (void)applicationDidEnterBackground:(UIApplication *)application
+//{
+//    [[FCMQueue sharedFCMQueue] setIsInForground:NO];
+//    NSLog(@"applicationDidEnterBackground:");
+//}
 
 //////////////////////////////////////////////////////
 ///////////////////MESSAGE HANDLING///////////////////
