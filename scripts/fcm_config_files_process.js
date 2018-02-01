@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 
+/**
+ * This hook makes sure projects using [cordova-plugin-firebase](https://github.com/arnesson/cordova-plugin-firebase)
+ * will build properly and have the required key files copied to the proper destinations when the app is build on Ionic Cloud using the package command.
+ * Credits: https://github.com/arnesson.
+ */
 var fs = require('fs');
 var path = require('path');
 
@@ -46,15 +51,6 @@ var PLATFORM = {
         stringsXml: ANDROID_DIR + '/res/values/strings.xml'
     }
 };
-
-// Copy key files to their platform specific folders
-if (directoryExists(IOS_DIR)) {
-    copyKey(PLATFORM.IOS);
-}
-
-if (directoryExists(ANDROID_DIR)) {
-    copyKey(PLATFORM.ANDROID, updateStringsXml)
-}
 
 function updateStringsXml(contents) {
     var json = JSON.parse(contents);
@@ -129,3 +125,17 @@ function directoryExists(path) {
         return false;
     }
 }
+
+module.exports = function(context) {
+  //get platform from the context supplied by cordova
+  var platforms = context.opts.platforms;
+  // Copy key files to their platform specific folders
+  if (platforms.indexOf('ios') !== -1 && directoryExists(IOS_DIR)) {
+    console.log('Preparing Firebase on iOS');
+    copyKey(PLATFORM.IOS);
+  }
+  if (platforms.indexOf('android') !== -1 && directoryExists(ANDROID_DIR)) {
+    console.log('Preparing Firebase on Android');
+    copyKey(PLATFORM.ANDROID, updateStringsXml)
+  }
+};
