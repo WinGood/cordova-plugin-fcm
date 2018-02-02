@@ -167,7 +167,7 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     [[FCMQueue sharedFCMQueue] setIsInForground:YES];
 }
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[FCMQueue sharedFCMQueue] setIsInForground:NO];
+    [[FCMQueue sharedFCMQueue] setIsInForground:YES];
 }
 
 //
