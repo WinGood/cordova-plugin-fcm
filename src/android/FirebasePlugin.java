@@ -803,9 +803,14 @@ public class FirebasePlugin extends CordovaPlugin {
             public void run() {
                 try {
                     Context context = cordova.getActivity();
-				    NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-					nm.cancelAll();
-					callbackContext.success();
+                    NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+                    if (FirebasePlugin.notificationStack != null) {
+                        FirebasePlugin.notificationStack.clear();
+                    }
+
+                    nm.cancelAll();
+                    callbackContext.success();
                 } catch (Exception e) {
                     callbackContext.error(e.getMessage());
                 }
