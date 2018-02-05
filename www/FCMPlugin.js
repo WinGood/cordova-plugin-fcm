@@ -16,8 +16,8 @@ FCMPlugin.prototype.unregister = function(success, error){
 	exec(success, error, "FCMPlugin", 'unregister', []);
 }
 
-exports.clearAllNotifications = function(success, error) {
-    exec(success, error, "FirebasePlugin", "clearAllNotifications", []);
+FCMPlugin.prototype.clearAllNotifications = function(success, error) {
+    exec(success, error, "FCMPlugin", "clearAllNotifications", []);
 };
 
 // TODO add unregister method
