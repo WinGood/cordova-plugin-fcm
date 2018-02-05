@@ -17,6 +17,7 @@
 - (void)hasPermission:(CDVInvokedUrlCommand*)command;
 - (void)notifyOfMessage:(NSData*) payload;
 - (void)notifyOfTokenRefresh:(NSString*) token;
+- (void)clearAllNotifications:(CDVInvokedUrlCommand *)command;
 
 //#define AppDelegateSingleton ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
