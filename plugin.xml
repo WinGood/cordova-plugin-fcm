@@ -19,7 +19,7 @@
 -->
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
            id="cordova-plugin-fcm-fork"
-      version="3.1.1">
+      version="3.1.2">
     <name>FCMPlugin</name>
     <description>Cordova FCM Plugin</description>
     <license>Apache 2.0</license>
@@ -83,8 +83,8 @@
 		<source-file src="src/android/colors.xml" target-dir="res/values" />
 
 		<framework src="src/android/build.gradle" custom="true" type="gradleReference" />
-		<framework src="com.google.gms:google-services:+" />
-		<framework src="com.google.android.gms:play-services-tagmanager:+" />
+		<framework src="com.google.gms:google-services:11.0.1" />
+		<framework src="com.google.android.gms:play-services-tagmanager:11.0.1" />
 		<framework src="com.google.firebase:firebase-core:+" />
 		<framework src="com.google.firebase:firebase-messaging:+" />
 		<framework src="com.google.firebase:firebase-crash:+" />
