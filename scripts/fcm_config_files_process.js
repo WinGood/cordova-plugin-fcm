@@ -38,6 +38,9 @@ if (directoryExists('platforms/ios')) {
     try {
       var contents = fs.readFileSync(path).toString();
       fs.writeFileSync('platforms/ios/' + name + '/Resources/GoogleService-Info.plist', contents);
+      if (directoryExists('platforms/ios/' + name + '/Resources/Resources')) {
+        fs.writeFileSync('platforms/ios/' + name + '/Resources/Resources/GoogleService-Info.plist', contents);
+      }
     } catch (err) {
       process.stdout.write(err);
     }
