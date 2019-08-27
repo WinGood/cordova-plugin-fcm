@@ -1,6 +1,6 @@
 var exec = require('cordova/exec');
 
-function FCMPlugin() { 
+function FCMPlugin() {
 	console.log("FCMPlugin.js: is created");
 }
 
@@ -12,28 +12,18 @@ FCMPlugin.prototype.hasPermission = function(success, error){
 	exec(success, error, "FCMPlugin", 'hasPermission', []);
 }
 
-FCMPlugin.prototype.unregister = function(success, error){
-	exec(success, error, "FCMPlugin", 'unregister', []);
-}
-
-FCMPlugin.prototype.clearAllNotifications = function(success, error) {
-    exec(success, error, "FCMPlugin", "clearAllNotifications", []);
-};
-
-// TODO add unregister method
-
 // SUBSCRIBE TO TOPIC //
-FCMPlugin.prototype.subscribe = function( topic, success, error ){
-	exec(success, error, "FCMPlugin", 'subscribe', [topic]);
+FCMPlugin.prototype.subscribeToTopic = function( topic, success, error ){
+	exec(success, error, "FCMPlugin", 'subscribeToTopic', [topic]);
 }
 // UNSUBSCRIBE FROM TOPIC //
-FCMPlugin.prototype.unsubscribe = function( topic, success, error ){
-	exec(success, error, "FCMPlugin", 'unsubscribe', [topic]);
+FCMPlugin.prototype.unsubscribeFromTopic = function( topic, success, error ){
+	exec(success, error, "FCMPlugin", 'unsubscribeFromTopic', [topic]);
 }
 // NOTIFICATION CALLBACK //
-FCMPlugin.prototype.onNotificationOpen = function( callback, success, error ){
+FCMPlugin.prototype.onNotification = function( callback, success, error ){
 	FCMPlugin.prototype.onNotificationReceived = callback;
-	exec(success, error, "FCMPlugin", 'onNotificationOpen',[]);
+	exec(success, error, "FCMPlugin", 'registerNotification',[]);
 }
 // TOKEN REFRESH CALLBACK //
 FCMPlugin.prototype.onTokenRefresh = function( callback ){
