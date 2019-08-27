@@ -97,16 +97,16 @@ public class FirebasePlugin extends CordovaPlugin {
         } else if (action.equals("getBadgeNumber")) {
             this.getBadgeNumber(callbackContext);
             return true;
-        } else if (action.equals("subscribe")) {
+        } else if (action.equals("subscribeToTopic")) {
             this.subscribe(callbackContext, args.getString(0));
             return true;
-        } else if (action.equals("unsubscribe")) {
+        } else if (action.equals("unsubscribeFromTopic")) {
             this.unsubscribe(callbackContext, args.getString(0));
             return true;
         } else if (action.equals("unregister")) {
             this.unregister(callbackContext);
             return true;
-        } else if (action.equals("onNotificationOpen")) {
+        } else if (action.equals("registerNotification")) {
             this.onNotificationOpen(callbackContext);
             return true;
         } else if (action.equals("onTokenRefresh")) {
