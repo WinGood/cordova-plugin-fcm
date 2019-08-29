@@ -17,7 +17,7 @@
   specific language governing permissions and limitations
   under the License.
 -->
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-fcm-fork" version="3.1.9">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-fcm-fork" version="3.2.0">
 	<name>FCMPlugin</name>
 	<description>Cordova FCM Plugin</description>
 	<license>Apache 2.0</license>
